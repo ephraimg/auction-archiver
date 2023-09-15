@@ -4,9 +4,12 @@ import java.util.List;
 
 public class EbayItemSummary {
     private List<EbayImage> additionalImages;
+    private int bidCount;
+    private EbayBuyingOption[] buyingOptions;
     private List<EbayCategory> categories;
     private EbayConvertedAmount currentBidPrice;
     private EbayImage image;
+    private String itemCreationDate;
     private String itemEndDate;
     /**
      * The URI for the Browse API getItem method, which can be used
@@ -23,6 +26,39 @@ public class EbayItemSummary {
     private List<EbayImage> thumbnailImages;
     private String title;
     private short watchCount;
+    private EbaySeller seller;
+
+    public EbayBuyingOption[] getBuyingOptions() {
+        return buyingOptions;
+    }
+
+    public void setBuyingOptions(EbayBuyingOption[] buyingOptions) {
+        this.buyingOptions = buyingOptions;
+    }
+
+    public String getItemCreationDate() {
+        return itemCreationDate;
+    }
+
+    public void setItemCreationDate(String itemCreationDate) {
+        this.itemCreationDate = itemCreationDate;
+    }
+
+    public int getBidCount() {
+        return bidCount;
+    }
+
+    public void setBidCount(int bidCount) {
+        this.bidCount = bidCount;
+    }
+
+    public EbaySeller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(EbaySeller seller) {
+        this.seller = seller;
+    }
 
     public List<EbayImage> getAdditionalImages() {
         return additionalImages;
@@ -131,7 +167,6 @@ public class EbayItemSummary {
 
 //    "adultOnly" : "boolean",
 //    "availableCoupons" : "boolean",
-//    "bidCount" : "integer",
 //    "buyingOptions" : ["string"],
 
 //    "compatibilityMatch" : "CompatibilityMatchEnum : [EXACT,POSSIBLE]",

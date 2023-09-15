@@ -40,8 +40,7 @@ public class AuctionArchiverEbayService implements EbayService {
                 .build();
         Call call = client.newCall(request);
 
-        try {
-            Response response = call.execute();
+        try (Response response = call.execute()) {
             String responseBody = response.body().string();
             Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
@@ -63,15 +62,13 @@ public class AuctionArchiverEbayService implements EbayService {
                     .addHeader("Authorization", "Bearer " + this.tokenResponse.accessToken)
                     .build();
             Call call = client.newCall(request);
-            try {
+            try (Response response = call.execute()) {
                 Gson gson = new GsonBuilder().create();
-                Response response = call.execute();
                 String responseBody = response.body().string();
-                EbaySearchPagedItemSummariesCollection results = gson.fromJson(
+                return gson.fromJson(
                         responseBody,
                         EbaySearchPagedItemSummariesCollection.class
                 );
-                return results;
             } catch(Exception e) {
                 System.out.println(e.getMessage());
             }
