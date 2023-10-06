@@ -1,60 +1,16 @@
 package com.ephraimglick.auctionarchiver.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public abstract class EbaySearchPagedCollection {
     private String href;
     private short limit;
     private short next;
     private short offset;
     private short prev;
-
-    public String getHref() {
-        return href;
-    }
-
-    public void setHref(String href) {
-        this.href = href;
-    }
-
-    public short getLimit() {
-        return limit;
-    }
-
-    public void setLimit(short limit) {
-        this.limit = limit;
-    }
-
-    public short getNext() {
-        return next;
-    }
-
-    public void setNext(short next) {
-        this.next = next;
-    }
-
-    public short getOffset() {
-        return offset;
-    }
-
-    public void setOffset(short offset) {
-        this.offset = offset;
-    }
-
-    public short getPrev() {
-        return prev;
-    }
-
-    public void setPrev(short prev) {
-        this.prev = prev;
-    }
-
-    public int getTotal() {
-        return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
-    }
-
     private int total;
 
 }
