@@ -12,7 +12,8 @@ import java.util.stream.Collectors;
 public class AuctionItem {
     private List<String> additionalImageUrls;
     private int bidCount;
-    private EbayConvertedAmount currentBidPrice;
+    private String currentBidPriceAmount;
+    private String currentBidPriceCurrency;
     private String ebaySellerId;
     private String itemCreationDate;
     private String itemEndDate;
@@ -41,7 +42,12 @@ public class AuctionItem {
                     .collect(Collectors.toList())
                 : new ArrayList<>();
         this.bidCount = ebayItemSummary.getBidCount();
-        this.currentBidPrice = ebayItemSummary.getCurrentBidPrice();
+        this.currentBidPriceAmount = ebayItemSummary.getCurrentBidPrice() != null
+                ? ebayItemSummary.getCurrentBidPrice().getValue()
+                : null;
+        this.currentBidPriceCurrency = ebayItemSummary.getCurrentBidPrice() != null
+                ? ebayItemSummary.getCurrentBidPrice().getCurrency()
+                : null;
         this.ebaySellerId = ebayItemSummary.getSeller() != null
                 ? ebayItemSummary.getSeller().getUsername()
                 : null;
