@@ -6,9 +6,11 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.*;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+@Service
 public class AuctionArchiverEbayService implements EbayService {
     private final OkHttpClient client = new OkHttpClient();
     private EbayTokenResponse tokenResponse;

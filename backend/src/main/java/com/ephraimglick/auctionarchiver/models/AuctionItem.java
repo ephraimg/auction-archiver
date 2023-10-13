@@ -1,6 +1,12 @@
 package com.ephraimglick.auctionarchiver.models;
 
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -9,7 +15,13 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@Entity
 public class AuctionItem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+    @ElementCollection
     private List<String> additionalImageUrls;
     private int bidCount;
     private String currentBidPriceAmount;
@@ -31,6 +43,7 @@ public class AuctionItem {
     private String priceAmount;
     private String priceCurrency;
     private String shortDescription;
+    @ElementCollection
     private List<String> thumbnailImageUrls;
     private String title;
 
