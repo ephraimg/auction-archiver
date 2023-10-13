@@ -1,5 +1,6 @@
 package com.ephraimglick.auctionarchiver.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +36,7 @@ public class AuctionItem {
      * to retrieve more details about items in the search results.
      */
     private String ebayItemAPIHref;
+    @Column(unique = true)
     private String ebayItemId;
     /**
      *  The URL to the View Item page of the item

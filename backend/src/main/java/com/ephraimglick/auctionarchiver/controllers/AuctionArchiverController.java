@@ -6,6 +6,7 @@ import com.ephraimglick.auctionarchiver.models.EbaySearchPagedItemSummariesColle
 import com.ephraimglick.auctionarchiver.repositories.AuctionItemRepository;
 import com.ephraimglick.auctionarchiver.services.AuctionArchiverEbayService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,10 +34,16 @@ public class AuctionArchiverController implements AuctionArchiverApi {
     }
 
     @PostMapping(AUCTION_ITEMS)
-    public ResponseEntity archiveItem(@RequestBody EbayItemSummary itemSummary) {
+    public ResponseEntity<?> archiveItem(@RequestBody EbayItemSummary itemSummary) {
         AuctionItem auctionItem = new AuctionItem(itemSummary);
-        auctionItemRepository.save(auctionItem);
-        return ResponseEntity.ok().build();
+        try {
+            auctionItemRepository.save(auctionItem);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getClass());
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
 
 }
