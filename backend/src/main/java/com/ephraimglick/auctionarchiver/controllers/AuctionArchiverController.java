@@ -38,7 +38,7 @@ public class AuctionArchiverController implements AuctionArchiverApi {
         AuctionItem auctionItem = new AuctionItem(itemSummary);
         try {
             auctionItemRepository.save(auctionItem);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             System.out.println("Error: " + e.getClass());
             System.out.println(e.getMessage());
