@@ -1,23 +1,29 @@
 import * as React from 'react';
-import {ItemSummaryList} from "./ItemSummaryList";
-import {ItemSummarySearchForm} from "./ItemSummarySearchForm";
+import { AuctionItemList } from "../../components/AuctionItemList";
+import { AuctionItemSearchForm } from "./AuctionItemSearchForm";
 import axios from 'axios';
+import { AuctionItem } from "../../entities";
 
-export const ItemSummarySearchContainer: React.FC = () => {
-    const [itemSummaries, setItemSummaries] = React.useState<EbayItemSummary[]>([]);
+interface ItemSummarySearchContainerProps {
+    auctionItems: AuctionItem[];
+    setAuctionItems:  React.Dispatch<React.SetStateAction<AuctionItem[]>>;
+}
 
-    const searchItemSummaries = async (searchTerm: string) => {
+export const ItemSummarySearchContainer: React.FC<ItemSummarySearchContainerProps> = props => {
+    const { auctionItems, setAuctionItems } = props;
+
+    const searchAuctionItems = async (searchTerm: string) => {
         const resp = await axios.get(
             'http://localhost:8080/search',
             { params: { q: searchTerm }}
         );
-        setItemSummaries(resp.data.itemSummaries);
+        setAuctionItems(resp.data.auctionItems);
     }
 
     return (
         <>
-            <ItemSummarySearchForm searchItemSummaries={searchItemSummaries}/>
-            <ItemSummaryList itemSummaries={itemSummaries}/>
+            <AuctionItemSearchForm searchAuctionItems={searchAuctionItems}/>
+            <AuctionItemList auctionItems={auctionItems}/>
         </>
     );
 }

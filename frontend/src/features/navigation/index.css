@@ -1,0 +1,9 @@
+.tab-link {
+    font-size: 1.5rem;
+    color: dimgray;
+    cursor: pointer;
+
+    &:not(:first-child) {
+        margin: 25px;
+    }
+}

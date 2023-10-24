@@ -1,16 +1,16 @@
 import * as React from 'react';
-import {FormEvent} from "react";
+import { FormEvent } from "react";
 
-interface ItemSummarySearchFormProps {
-    searchItemSummaries: (searchTerm: string) => Promise<void>;
+interface AuctionItemSearchFormProps {
+    searchAuctionItems: (searchTerm: string) => Promise<void>;
 }
-export const ItemSummarySearchForm: React.FC<ItemSummarySearchFormProps> = props => {
-    const { searchItemSummaries } = props;
+export const AuctionItemSearchForm: React.FC<AuctionItemSearchFormProps> = props => {
+    const { searchAuctionItems } = props;
     const [searchTerm, setSearchTerm] = React.useState("");
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        searchItemSummaries(searchTerm);
+        searchAuctionItems(searchTerm);
     }
 
     return <form onSubmit={handleSubmit}>
