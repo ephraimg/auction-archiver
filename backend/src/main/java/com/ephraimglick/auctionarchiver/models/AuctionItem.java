@@ -28,6 +28,8 @@ public class AuctionItem {
     private String currentBidPriceAmount;
     private String currentBidPriceCurrency;
     private String ebaySellerId;
+    private int ebaySellerFeedbackScore;
+    private String ebaySellerFeedbackPercentage;
     private String itemCreationDate;
     private String itemEndDate;
     private String imageUrl;
@@ -65,6 +67,12 @@ public class AuctionItem {
                 : null;
         this.ebaySellerId = ebayItemSummary.getSeller() != null
                 ? ebayItemSummary.getSeller().getUsername()
+                : null;
+        this.ebaySellerFeedbackScore = ebayItemSummary.getSeller() != null
+                ? ebayItemSummary.getSeller().getFeedbackScore()
+                : null;
+        this.ebaySellerFeedbackPercentage = ebayItemSummary.getSeller() != null
+                ? ebayItemSummary.getSeller().getFeedbackPercentage()
                 : null;
         this.itemCreationDate = ebayItemSummary.getItemCreationDate();
         this.itemEndDate = ebayItemSummary.getItemEndDate();
